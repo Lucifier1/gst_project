@@ -1,0 +1,329 @@
+{% extends "adminapp/master.html" %}
+{% load static %} 
+{% block content %} 
+
+<style>
+  /* Pagination Controls Styling */
+  .dataTables_paginate {
+      text-align: center; /* Center-align the pagination controls */
+      margin-top: 20px;
+  }
+  /* Styling individual pagination buttons */
+  .dataTables_paginate .paginate_button {
+      background-color: white !important;  /* Blue background */
+      border: 1px solid rgba(0, 0, 0, 0.097) !important;
+      border-radius: 5px !important;  /* Thicker blue border to emphasize it */
+      color: white;               /* White text color */
+      padding: 20px !important;
+      font-size: 16px !important;            /* Font size */
+      cursor: pointer;           /* Pointer cursor */
+      transition: all 0.3s ease !important;  /* Smooth transition effect */
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 65px;
+      padding: 5px !important;
+      font-size: 12px !important;
+      margin-right: 2px !important;
+      text-align: center;
+      text-decoration: none !important;
+      cursor: pointer;
+      color: #333 !important;
+      border: 1px solid transparent;
+      border-radius: 2px;
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+      color: white !important;
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      color: white !important;
+      border: 1px solid red;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(100%, #0056B3), color-stop(100%, #0056B3));
+      /* background: -webkit-linear-gradient(top, #585858 0%, red 100%); */
+      /* background: -moz-linear-gradient(top, #585858 0%, red 100%); */
+      /* background: -ms-linear-gradient(top, #585858 0%, red 100%); */
+      /* background: -o-linear-gradient(top, #585858 0%, red 100%); */
+      /* background: linear-gradient(to bottom, #585858 0%, red 100%); */
+  }
+  .dataTables_wrapper .dataTables_info {
+      clear: both;
+      float: left;
+      margin-top:10px;
+  }
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+      color: #333;
+      font-size: 12px;
+      margin-right: 5px;
+      font-weight: 900;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .dataTables_wrapper .dataTables_filter input {
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      padding: 5px;
+      background-color: transparent;
+      margin-left: 3px;
+      height: 30px;
+      width: 250px;
+  }
+  /* Hover effect for pagination buttons */
+  .dataTables_paginate .paginate_button:hover {
+      background-color: #0056B3; /* Darker blue background on hover */
+      border-color: #0056B3;     /* Darker blue border on hover */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow */
+  }
+  /* Active page button styling */
+  .dataTables_paginate .paginate_button.current {
+      background-color: #0056B3 !important;  /* Active page button background */
+      border-color: #0056B3 !important;      /* Matching border color */
+      color: white;                /* White text */
+      font-weight: bold;           /* Make the active page bold */
+  }
+  /* Disabled pagination buttons */
+  .dataTables_paginate .paginate_button.disabled {
+      background-color: #F1F1F1;  /* Light grey background */
+      color: #ccc;                /* Light grey text */
+      border-color: #ddd;         /* Light grey border */
+      cursor: not-allowed;        /* Disable pointer cursor */
+  }
+  /* Custom Styling for the "Show entries" dropdown */
+  .dataTables_length {
+      margin-bottom: 20px;         /* Space below the "Show entries" dropdown */
+      font-size: 14px;             /* Font size */
+  }
+  /* Styling the dropdown select element */
+  .dataTables_length select {
+      padding: 5px 15px;           /* Add padding inside the select dropdown */
+      font-size: 14px;             /* Font size for the dropdown */
+      border: 2px solid #007BFF;   /* Thicker blue border to emphasize it */
+      border-radius: 5px;          /* Rounded corners for the dropdown */
+      background-color: #F1F1F1;   /* Background color for the dropdown */
+      color: #333;                 /* Text color */
+      transition: all 0.3s ease;   /* Smooth transition effect */
+  }
+  /* Hover effect for the "Show entries" dropdown */
+  .dataTables_length select:hover {
+      background-color: #E9ECEF;   /* Slight grey on hover */
+      border-color: #0056B3;       /* Darker blue border on hover */
+  }
+  /* Focus effect for the "Show entries" dropdown */
+  .dataTables_length select:focus {
+      outline: none;               /* Remove default focus outline */
+      border-color: #0056B3;       /* Blue border on focus */
+      box-shadow: 0 0 10px rgba(0, 91, 255, 0.3);  /* Glow effect when focused */
+  }
+  /* Responsive Adjustment */
+  @media (max-width: 768px) {
+      .dataTables_paginate .paginate_button {
+          padding: 6px 12px; /* Adjust button padding */
+          font-size: 12px;    /* Smaller font size on mobile */
+      }
+      .dataTables_length select {
+          padding: 4px 10px;   /* Smaller padding on mobile */
+      }
+  }
+</style>
+
+
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h3>Blog List</h3>
+              <div class="section-title align-middle">
+                <a class="btn btn-primary" href="{% url 'adminapp:blog_add' %}">Add Blog</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-sm" id="report-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                id="user_datatable_ajax" role="grid" aria-describedby="user_datatable_ajax_info">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-table">
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  {% comment %} ------------------------------DELETE MODAL ----------------------------------------------  {% endcomment %}
+
+  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+  aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+              <button type="button" class="close" onclick="showCancelConfirmationModal()" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Are you sure you want to delete this Data ?
+          </div>
+          <div class="modal-footer">
+            <form id="deleteForm" method="post">
+              {% csrf_token %}
+              <button type="button" class="btn btn-secondary" onclick="showCancelConfirmationModal()">Cancel</button>
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+      </div>
+  </div>
+  </div>
+
+<script>
+    function showDeletemodal(itemId) {
+        console.log('Delete button clicked');
+        console.log(itemId);
+        var deleteUrl = "/adminapp/blog_delete/" + itemId + "/";
+        $('#deleteForm').attr('action', deleteUrl);
+        $('#deleteConfirmationModal').modal('show');
+        }
+        function showCancelConfirmationModal() {
+        $('#deleteConfirmationModal').modal('hide');
+    }
+</script>
+
+
+<script>
+    $('#report-table').DataTable({
+        responsive: true,
+        searching: true,  // Enable the search feature
+        paging: true,  // Enable pagination
+        pageLength: 10,   // Set the default number of rows per page
+        lengthChange: true,
+        // Ajax for pagination
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{% url "adminapp:blog_ajax" %}',
+            type: 'GET',
+        },
+        columns: [
+            { data: 'id', name: 'id'},
+            { data: 'title', name: 'title' },
+            { data: 'category', name: 'category' },
+            { data: 'description', name: 'description' },
+            { data: 'image', name: 'image',
+                render: function(data, type, row) {
+                    if (data) {
+                        return `<img src="${data}" alt="Image" style="width: 100px; height: 100px;">`;
+                    }
+                    return '';  // Return empty if no image data
+                }  
+            },
+            {
+                data: 'actions',
+                name: 'actions',
+                orderable: false, // Disable sorting for Actions
+                searchable: false // Disable search for Actions
+            }
+        ],
+        language: {
+            lengthMenu: "Show _MENU_ entries",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            infoEmpty: "No entries available",
+            paginate: {
+                previous: "Previous",
+                next: "Next"
+            }
+        },
+        dom: 'Bfrtip',  // Use Bootstrap's Table style with the Buttons control
+        buttons: [
+        {
+            extend: 'copy',
+            text: '<i class="fas fa-copy"></i>', 
+            titleAttr: 'Copy',
+            filename: function() {
+            return 'Lily_Lotus-Blog';
+            },
+            title: function() {
+            return 'Blog List';
+            },
+            exportOptions: {
+            columns: [0,1,2,3]  
+            }
+        },
+        {
+            extend: 'csv',
+            text: '<i class="fas fa-file-csv"></i>', 
+            titleAttr: 'CSV',
+            filename: function() {
+            return 'Lily_Lotus-Blog';
+            },
+            title: function() {
+            return 'Blog List';
+            },
+            exportOptions: {
+            columns: [0,1,2,3]  
+            }
+        },
+        {
+            extend: 'excel',
+            text: '<i class="fas fa-file-excel"></i>', 
+            titleAttr: 'Excel',
+            filename: function() {
+            return 'Lily_Lotus-Blog';
+            },
+            title: function() {
+            return 'Blog List';
+            },
+            exportOptions: {
+            columns: [0,1,2,3]  
+            }
+        },
+        {
+            extend: 'pdf',
+            text: '<i class="fas fa-file-pdf"></i>', 
+            titleAttr: 'PDF',
+            filename: function() {
+            return 'Lily_Lotus-Blog';
+            },
+            title: function() {
+            return 'Blog List';
+            },
+            exportOptions: {
+            columns: [0,1,2,3]  
+            }
+        },
+        {
+            extend: 'print',
+            text: '<i class="fas fa-print"></i>', 
+            titleAttr: 'Print',
+            filename: function() {
+            return 'Lily_Lotus-Blog';
+            },
+            title: function() {
+            return 'Blog List';
+            },
+            exportOptions: {
+            columns: [0,1,2,3]  
+            }
+        }
+            
+        ]
+    });
+</script>
+
+{% endblock %}

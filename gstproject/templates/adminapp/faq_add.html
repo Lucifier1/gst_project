@@ -1,0 +1,41 @@
+{% extends "adminapp/master.html" %}
+{% load static %} 
+{% block content %} 
+
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="card">
+          <form method="post">
+            {% csrf_token %} 
+            <div class="card-header pt-3">
+              <h3><span><a class = "text-decoration-none" href="{% url 'adminapp:faq_list' %}"><span class="icon-preview">
+                <i class="fas fa-arrow-left"></i>
+            </span></a></span>FAQ Add</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Question</label>
+                <textarea type="text" name="question" class="form-control" placeholder="Enter Question" required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label>Answer</label>
+                <textarea type="text" name="answer" class="form-control" placeholder="Enter Answer" required></textarea>
+              </div>
+              
+            </div>
+            <div class="card-footer text-right">
+              <button class="btn btn-primary mr-1" type="submit">Submit</button>
+              <a href="{% url 'adminapp:faq_list' %}" class="btn btn-danger">Close</a>
+            </div>
+          </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

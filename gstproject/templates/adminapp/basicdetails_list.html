@@ -1,0 +1,106 @@
+{% extends "adminapp/master.html" %}
+{% load static %} 
+{% block content %} 
+
+
+
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h3>Basic Details List</h3>
+              <div class="section-title align-middle">
+                {% if basicdetails_data %}
+                <a class="btn btn-primary" href="{% url 'adminapp:basicdetails_update' basicdetails_data.id %}">Update Basic Details</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'adminapp:basicdetails_add' %}">Add Basic Details</a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-sm" id="report-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                id="user_datatable_ajax" role="grid" aria-describedby="user_datatable_ajax_info">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">About</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Social Links</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if basicdetails_data %}
+                    <tr>
+                        <td>{{basicdetails_data.name}}</td>
+                        <td>{{basicdetails_data.email}}</td>
+                        <td>{{basicdetails_data.about}}</td>
+                        <td>{{basicdetails_data.address}}</td>
+                        <td>{{basicdetails_data.phone}}</td>
+                        <td>
+                            {{basicdetails_data.twitter_link}} <br>
+                            {{basicdetails_data.facebook_link}}<br>
+                            {{basicdetails_data.instagram_link}}<br>
+                            {{basicdetails_data.linkedin_link}}<br>
+                        </td>
+                        <td><button class="btn btn-danger" onclick="showDeletemodal('{{basicdetails_data.id}}')">Delete</button></td>
+                    </tr>
+                    {% else %}
+                    No Data Available
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+{% comment %} ------------------------------DELETE MODAL ----------------------------------------------  {% endcomment %}
+
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+  aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+              <button type="button" class="close" onclick="showCancelConfirmationModal()" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Are you sure you want to delete this Data ?
+          </div>
+          <div class="modal-footer">
+            <form id="deleteForm" method="post">
+              {% csrf_token %}
+              <button type="button" class="btn btn-secondary" onclick="showCancelConfirmationModal()">Cancel</button>
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+    function showDeletemodal(itemId) {
+        console.log('Delete button clicked');
+        console.log(itemId);
+        var deleteUrl = "/adminapp/basicdetails_delete/" + itemId + "/";
+        $('#deleteForm').attr('action', deleteUrl);
+        $('#deleteConfirmationModal').modal('show');
+        }
+        function showCancelConfirmationModal() {
+        $('#deleteConfirmationModal').modal('hide');
+    }
+</script>
+
+{% endblock %}

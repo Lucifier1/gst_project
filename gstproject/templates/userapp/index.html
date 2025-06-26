@@ -1,0 +1,743 @@
+{% extends 'userapp/master.html' %}
+{% load static %} 
+{% block content %}
+{% load custom_filters %}
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <!-- <img src="https://i.pinimg.com/originals/26/b8/f1/26b8f1a0d3308bd834ad7152b6062e1a.gif" alt="" data-aos="fade-in"> -->
+      <img src="{% static 'userapp/assets/img/gst_hero.jpg' %}" alt="" data-aos="fade-in">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10">
+            <h2 data-aos="fade-up" data-aos-delay="100">Protect Your Business from Fraud</h2>
+            <p data-aos="fade-up" data-aos-delay="200">Search, report, and prevent fraudulent activities.</p>
+          </div>
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
+            <!-- <form action="forms/newsletter.php" method="post" class="php-email-form"> -->
+              <div class="sign-up-form"><input class="form-control" type="email" name="email"><input type="submit" value="Search Business"></div>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section light-background">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About Us</h2>
+        <p>we are committed to protecting businesses from fraud and unethical practices. Our platform provides a secure and transparent way for business owners to verify and report fraudulent activities, ensuring safer transactions and trust in the business ecosystem.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row align-items-xl-center gy-5">
+
+          <div class="col-xl-12">
+            <div class="row gy-4 icon-boxes">
+              {% for ab in about_parameter %}
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">
+                  <i class="{{ab.icon}}"></i>
+                  <span class="title">{{ab.title}}</span>
+                  <p>{{ab.description}}</p>
+                </div>
+              </div>
+              {% endfor %}
+
+              {% comment %} <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">
+                  <i class="bi bi-binoculars"></i>
+                  <span class="title">Fraud History Search</span>
+                  <p>Instantly check fraud records linked to GST numbers before making a business deal.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                  <i class="bi bi-building-lock"></i>
+                  <span class="title">Secure Business Verification</span>
+                  <p>Register your business and verify its authenticity to build trust.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box">
+                  <i class="bi bi-flag"></i>
+                  <span class="title">Report Fraudulent Activities</span>
+                  <p>Contribute to a transparent business environment by reporting fraudulent entities.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box">
+                  <i class="bi bi-hourglass-split"></i>
+                  <span class="title">Real-Time Alerts</span>
+                  <p> Get notified about potential fraud risks associated with businesses you interact with.</p>
+                </div>
+              </div> <!-- End Icon Box --> {% endcomment %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section dark-background">
+
+      <img src="{% static 'userapp/assets/img/1.webp' %}" alt="" data-aos="fade-in">
+
+      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Verified Businesses</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Alerts Provided</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Reviews</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Frauds Encountered</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Helping Businesses make informed decisions and safeguard their operations against financial risks.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+          {% for ab in services %}
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="{{ab.logo}}"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link">{{ab.name}}</a></h4>
+                <p class="description">{{ab.description}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% comment %} <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-clock-history"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link"> Fraud History Check</a></h4>
+                <p class="description">Verify the fraud history of any registered business using their GST number before making financial or business decisions. Stay informed and avoid potential risks.</p>
+              </div>
+            </div>
+          </div>
+          <!-- End Service Item -->
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link">Complaint Filing & Review</a></h4>
+                <p class="description">Report fraudulent activities or unethical business practices. Registered users can submit complaints against businesses, ensuring transparency in the industry.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link">Business Reputation Score</a></h4>
+                <p class="description">Get insights into a business’s credibility with a reputation score based on user complaints, resolutions, and overall feedback. Make informed partnerships with trustworthy businesses.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-exclamation-diamond"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link">Dispute Resolution Assistance</a></h4>
+                <p class="description">We facilitate communication between businesses and complainants to encourage fair dispute resolution and maintain a trustworthy business environment.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-envelope-exclamation"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link">Alerts & Notifications</a></h4>
+                <p class="description">Receive real-time alerts if a business you’re tracking has new complaints or fraud reports, helping you take preventive measures in time.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-shield-check"></i></div>
+              <div>
+                <h4 class="title"><a href="services-details.html" class="stretched-link">Secure & Anonymous Reporting</a></h4>
+                <p class="description">Protect your identity while reporting fraud. Our secure system ensures anonymity for whistleblowers while maintaining transparency for businesses.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item --> {% endcomment %}
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Some Registered Businesses</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-product">Card</li>
+            <li data-filter=".filter-branding">Web</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzjVKPJ0qGCFLezgUQML6f8Xtj9DLsI8EwlQ&s" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Shell</h4>
+                <p>Petroleum Company</p>
+                <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzjVKPJ0qGCFLezgUQML6f8Xtj9DLsI8EwlQ&s" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="https://readerssquarein.home.blog/wp-content/uploads/2019/01/volkswagen-logo-design.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Volkswagen</h4>
+                <p>Automobile</p>
+                <a href="https://readerssquarein.home.blog/wp-content/uploads/2019/01/volkswagen-logo-design.png" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyiIJqvv1ZxW_g__60BHhUGWUVcwxjbJPw6g&s" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>H & M</h4>
+                <p>Clothing Brand</p>
+                <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyiIJqvv1ZxW_g__60BHhUGWUVcwxjbJPw6g&s" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOzv-6pjZP_gTCdTby6eukP-O5QAdDhmupiw&s" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Oreo</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOzv-6pjZP_gTCdTby6eukP-O5QAdDhmupiw&s" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="https://www.logodesign.net/images/tutorials/famous-logos-fun-facts/logos-13.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>GAP</h4>
+                <p>E-commerce Platform</p>
+                <a href="https://www.logodesign.net/images/tutorials/famous-logos-fun-facts/logos-13.png" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="https://static.wixstatic.com/media/ea6ac8_fe86a8a670214c18ae5266710bd85b5c~mv2.jpg/v1/fill/w_924,h_309,al_c,q_80,enc_avif,quality_auto/ea6ac8_fe86a8a670214c18ae5266710bd85b5c~mv2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Amazon</h4>
+                <p>E-commerce Platform</p>
+                <a href="https://static.wixstatic.com/media/ea6ac8_fe86a8a670214c18ae5266710bd85b5c~mv2.jpg/v1/fill/w_924,h_309,al_c,q_80,enc_avif,quality_auto/ea6ac8_fe86a8a670214c18ae5266710bd85b5c~mv2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="https://miro.medium.com/v2/resize:fit:1358/1*ecqVXYms_mk9WJ-fxpvbpw.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>IBM</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="https://miro.medium.com/v2/resize:fit:1358/1*ecqVXYms_mk9WJ-fxpvbpw.png" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="https://www.zarla.com/images/fedex-logo-2400x2400-20220519.png?crop=1:1,smart&width=150&dpr=2" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>FedEx Express</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="https://www.zarla.com/images/fedex-logo-2400x2400-20220519.png?crop=1:1,smart&width=150&dpr=2" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyBkqt4Xuqho2wV6yL1ru7OX9osTNLFtJ8Hy_JE8qqEQZphLiRVFnKmjENfXm8IyHITC0&usqp=CAU" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Christian Dior</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyBkqt4Xuqho2wV6yL1ru7OX9osTNLFtJ8Hy_JE8qqEQZphLiRVFnKmjENfXm8IyHITC0&usqp=CAU" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Frequently Asked Questions</h2>
+        <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="200">
+            <div class="faq-container">
+              {% for ab in faq %}
+              <div class="faq-item">
+                <h3><span class="num">{{forloop.counter}}.</span> <span>{{ab.question}}</span></h3>
+                <div class="faq-content">
+                  <p>{{ab.answer}}</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+              {% endfor %}
+              {% comment %} <div class="faq-item">
+                <h3><span class="num">2.</span> <span>How can I check a business’s fraud history?</span></h3>
+                <div class="faq-content">
+                  <p>Simply enter the GST number of the business in our search tool. If there are any complaints or fraud reports, you’ll see relevant details to help you make informed decisions.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">3.</span> <span>Can I file a complaint against a business?</span></h3>
+                <div class="faq-content">
+                  <p>Yes! Registered users can submit complaints against businesses involved in fraudulent activities. Your report will be reviewed and added to the database for transparency.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">4.</span> <span>Is my identity protected when I file a complaint?</span></h3>
+                <div class="faq-content">
+                  <p>Absolutely! We offer secure and anonymous reporting options, ensuring whistleblowers can report fraud without fear of retaliation.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">5.</span> <span>How is a business’s reputation score calculated?</span></h3>
+                <div class="faq-content">
+                  <p>The reputation score is based on several factors, including the number of complaints, the nature of issues reported, and whether the business has resolved past disputes.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item--> {% endcomment %}
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <img src="{% static 'userapp/assets/img/bg.webp' %}" alt="">
+
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              <h3>Register Now & Protect Your Business!</h3>
+              <p>Join our platform today to stay informed, prevent fraud, and build trust in your business network. Whether you're a business owner or an investor, our fraud detection system helps you make secure and informed decisions.</p>
+              <a class="cta-btn" href="{% url 'userapp:userregister' %}">Register</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section light-background">
+
+      <div class="container">
+
+        <div class="row align-items-center">
+
+          <div class="col-lg-5 info" data-aos="fade-up" data-aos-delay="100">
+            <h3>What Our Users Say</h3>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+            </p>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                {% for ab in testimonial %}
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="d-flex">
+                      {% if ab.user.profile %} 
+                      <img src="{{ab.user.profile.url}}" class="testimonial-img flex-shrink-0" alt="">
+                      {% else %} 
+                      <img src="{% static 'userapp/assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                      {% endif %} 
+                      <div>
+                        <h3>{{ab.user.first_name}} {{ab.user.last_name}}</h3>
+                        <h4>{{ab.user.position}}</h4>
+                        <div class="stars">
+                          {% if ab.rate %}
+                          {% for i in 1|to:ab.rate %}
+                              <i class="bi bi-star-fill"></i>  <!-- Filled star -->
+                          {% endfor %}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <h5><b>{{ab.title}}</b></h5>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>{{ab.description}}</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+                {% endfor %}
+                {% comment %} <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="d-flex">
+                      <img src="{% static 'userapp/assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                      <div>
+                        <h3>Priya Sharma</h3>
+                        <h4>Entrepreneur</h4>
+                        <div class="stars">
+                          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <h5><b>Trustworthy & Reliable!</b></h5>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>As a small business owner, I value transparency. This website helped me clear my company’s reputation by responding to false complaints. Now, my clients trust me more than ever!</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+                
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="d-flex">
+                      <img src="{% static 'userapp/assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                      <div>
+                        <h3>Rahul Mehta</h3>
+                        <h4>Investor</h4>
+                        <div class="stars">
+                          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <h5><b>Essential for Secure Transactions!</b></h5>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>I almost signed a contract with a vendor, but after checking their fraud history here, I found unresolved disputes. This platform is a must-have for every business professional.</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+                
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="d-flex">
+                      <img src="{% static 'userapp/assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                      <div>
+                        <h3>Matt Brandon</h3>
+                        <h4>Business Owner</h4>
+                        <div class="stars">
+                          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <h5><b>Easy to Use & Informative!</b></h5>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>The fraud alerts and detailed reports are incredibly useful. I now verify every business I work with, ensuring my company’s safety.</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+               {% endcomment %}
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Testimonials Section -->
+
+    <!-- Recent Posts Section -->
+    <section id="recent-posts" class="recent-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Recent Posts</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          {% for ab in blogs %}
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <article>
+
+              <div class="post-img">
+                <img src="{{ab.image.url}}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">{{ab.category.name}}</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">{{ab.title}}</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                {% if ab.user.profile %}
+                <img src="{{ab.user.profile.url}}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                {% else %}
+                <img src="{% static 'userapp/assets/img/blog/blog-author.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                {% endif %}
+                <div class="post-meta">
+                  <p class="post-author">{{ab.user.first_name}} {{ab.user.last_name}}</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">{{ab.created_at|date:'M d, Y'}}</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+          {% endfor %}
+          {% comment %} <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static 'userapp/assets/img/blog/blog-2.jpg' %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Sports</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static 'userapp/assets/img/blog/blog-author-2.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Allisa Mayer</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jun 5, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static 'userapp/assets/img/blog/blog-3.jpg' %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Entertainment</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static 'userapp/assets/img/blog/blog-author-3.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Mark Dower</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jun 22, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item --> {% endcomment %}
+
+        </div><!-- End recent posts list -->
+
+      </div>
+
+    </section><!-- /Recent Posts Section -->
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6">
+
+            <div class="row gy-4">
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="200">
+                  <i class="bi bi-geo-alt"></i>
+                  <h3>Address</h3>
+                  <p>{{basic_details.address}}</p>
+                  <!-- <p>India</p> -->
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="300">
+                  <i class="bi bi-telephone"></i>
+                  <h3>Call Us</h3>
+                  <p>{{basic_details.phone}}</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="400">
+                  <i class="bi bi-envelope"></i>
+                  <h3>Email Us</h3>
+                  <p>{{basic_details.email}}</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="500">
+                  <i class="bi bi-clock"></i>
+                  <h3>Open Hours</h3>
+                  <p>Monday - Friday</p>
+                  <p>9:00AM - 05:00PM</p>
+                </div>
+              </div><!-- End Info Item -->
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <form method="post" data-aos="fade-up" data-aos-delay="200">
+              {% csrf_token %}
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-12 text-center">
+                  <button type="submit">Send Message</button>
+                </div>
+                
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+        </div>
+      </div>
+    </section><!-- /Contact Section -->
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "adminapp/master.html" %}
+{% load static %} 
+{% block content %} 
+
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="card">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+            <div class="card-header pt-3">
+              <h3><span><a class = "text-decoration-none" href="{% url 'adminapp:blog_list' %}"><span class="icon-preview">
+                <i class="fas fa-arrow-left"></i>
+            </span></a></span>Blog Update</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" value="{{form.title.value}}" class="form-control" placeholder="Enter Question" required>
+              </div>
+
+              <div class="form-group">
+                <label>Category</label>
+                <select class="form-control" name="category" aria-label="Default select example" required>
+                    <option value="">Select One</option>
+                    {% for ab in category %}
+                    <option {% if form.category.value == ab.id %} selected {% endif %} value="{{ab.id}}">{{ab.name}}</option>
+                    {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Image</label>
+                <span>File: {{form.image.value}}</span>
+                <input type="file" name="image" value="{{form.image.value}}" class="form-control" placeholder="Enter Question">
+              </div>
+              
+              <div class="form-group">
+                <label>Description</label>
+                <textarea type="text" name="description" class="form-control" placeholder="Enter Description" required>{{form.description.value}}</textarea>
+              </div>
+              
+            </div>
+            <div class="card-footer text-right">
+              <button class="btn btn-primary mr-1" type="submit">Submit</button>
+              <a href="{% url 'adminapp:blog_list' %}" class="btn btn-danger">Close</a>
+            </div>
+          </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
